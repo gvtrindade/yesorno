@@ -9,3 +9,7 @@ function resposta(){
 	};
 	resposta.innerText = ["Yes","No"].rand();
 }
+
+function reload(){
+	location.reload();	
+}
