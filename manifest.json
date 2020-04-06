@@ -1,0 +1,12 @@
+{
+  "name": "Yes/No",
+  "short_name": "Yes/No",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "minimal-ui",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": null,
+  "splash_pages": null
+}
