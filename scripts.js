@@ -14,41 +14,19 @@ function reload() {
     location.reload();
 }
 
+window.addEventListener('load', e => {
+    // new PWAConfApp();
+    registerSW();
+});
 
-let CACHE_NAME = "static-v1"
-
-self.addEventListener("install", function(event) {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(function(cache) {
-            return cache.addAll([
-                "index.html",
-                "style.css",
-                "scripts.js",
-                "manifest.json"
-            ])
-        })
-    )
-})
-
-self.addEventListener("activate", function activator(event) {
-    event.waitUntil(
-        caches.keys().then(function(keys) {
-            return Promise.all(keys
-                .fliter(function(key) {
-                    return key.indexOf(CACHE_NAME) !== 0;
-                })
-                .map(function(key) {
-                    return caches.delete(key)
-                })
-            )
-        })
-    )
-})
-
-self.addEventListener("fetch", function(event) {
-    event.respondWith(
-        caches.match(event.request).then(function(cachedResponse) {
-            return cachedResponse || fetch(event.request)
-        })
-    )
-})
+async function registerSW() {
+    if ('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('./service-worker.js');
+        } catch (e) {
+            alert('ServiceWorker registration failed. Sorry about that.');
+        }
+    } else {
+        document.querySelector('.alert').removeAttribute('hidden');
+    }
+}
