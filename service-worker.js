@@ -30,14 +30,10 @@ async function cacheFirst(req) {
 async function networkFirst(req) {
     const cache = await caches.open(cacheName);
     try {
-
-
         const fresh = await fetch(req);
         cache.put(req, fresh.clone());
         return fresh;
     } catch (e) {
-
-
         const cachedResponse = await cache.match(req);
         return cachedResponse;
     }
