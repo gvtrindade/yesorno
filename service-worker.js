@@ -6,14 +6,12 @@ const staticAssets = [
     "./style.css"
 ]
 self.addEventListener('install', async event => {
-    console.log('install event')
     const cache = await caches.open(cacheName)
     await cache.addAll(staticAssets)
 });
 
 //Fetch instructions for when offline
 self.addEventListener('fetch', event => {
-    console.log('fetch event')
     const req = event.request;
     event.respondWith(cacheFirst(req))
 });
