@@ -1,5 +1,5 @@
 //Declare information and assets of the app
-const cacheName = "Yes/No_v1"
+const cacheName = "2"
 const staticAssets = [
     "./index.html",
     "./scripts.js",
@@ -19,6 +19,22 @@ self.addEventListener('fetch', event => {
     } else {
         event.respondWith(cacheFirst(req));
     }
+});
+
+self.addEventListener('activate', function(event) {
+    event.waitUntil(
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames.filter(function(cacheName) {
+                    // Return true if you want to remove this cache,
+                    // but remember that caches are shared across
+                    // the whole origin
+                }).map(function(cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
+        })
+    );
 });
 
 async function cacheFirst(req) {
