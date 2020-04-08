@@ -1,5 +1,5 @@
 //Declare information and assets of the app
-const cacheName = "2"
+const cacheName = "3"
 const staticAssets = [
     "./index.html",
     "./scripts.js",
