@@ -1,7 +1,7 @@
 //Apresentar resposta ao carregar a página
 window.onload = function() {
     resultado();
-    // registerSW();
+    registerSW();
 }
 
 //Função do botão de resultado
@@ -75,15 +75,15 @@ function resultado() {
 
 }
 
-// //Função que ativa o service worker
-// async function registerSW() {
-//     if ('serviceWorker' in navigator) {
-//         try {
-//             await navigator.serviceWorker.register('./service-worker.js');
-//         } catch (e) {
-//             alert('ServiceWorker registration failed. Sorry about that.');
-//         }
-//     } else {
-//         document.querySelector('.alert').removeAttribute('hidden');
-//     }
-// }
+//Função que ativa o service worker
+async function registerSW() {
+    if ('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('./service-worker.js');
+        } catch (e) {
+            alert('ServiceWorker registration failed. Sorry about that.');
+        }
+    } else {
+        document.querySelector('.alert').removeAttribute('hidden');
+    }
+}
